@@ -1,0 +1,13 @@
+  .cuerpo {
+    background: #a0e1f1;
+    color: rgb(60, 19, 182);
+    text-align:center;
+    width: 100%;
+    display: block;
+    height: 495px;
+  }
+
+  .cuerpo li {
+  text-align: center;
+  padding-left: 40px;
+}

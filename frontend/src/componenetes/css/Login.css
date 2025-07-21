@@ -1,0 +1,24 @@
+.container {
+    margin: 20px;
+    height: 400px;
+    width: 600px;
+    background-color: aqua;
+    display:flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.imagen-login{
+    width: 150px;
+    height: 100px;
+    padding-left: 50px;
+    padding-top: 50px;
+  }
+  .formulario-login{
+
+    width: 600px;
+    height: 200px;
+    padding-left: 300px;
+
+  }
+
+

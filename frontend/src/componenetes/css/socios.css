@@ -1,0 +1,144 @@
+/*
+.socios-container {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.titulo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.socios-form {
+  margin-bottom: 30px;
+}
+
+.socios-form input[type="text"],
+.socios-form input[type="number"],
+.socios-form input[type="checkbox"] {
+  display: block;
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.checkbox {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.socios-form button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.socios-form button:hover {
+  background-color: #0056b3;
+}
+
+.socios-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+.socios-table th,
+.socios-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.socios-table th {
+  background-color: #f2f2f2;
+}
+
+.socios-table button {
+  margin: 0 4px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.socios-table button:first-child {
+  background-color: #ffc107;
+  color: black;
+}
+
+.socios-table button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+*/
+
+.socios-container {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.socios-container h2 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.socios-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.socios-form input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.socios-form label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.socios-form button {
+  padding: 8px 16px;
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.socios-form button:hover {
+  background-color: #006cd3;
+}
+
+.socios-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.socios-table th,
+.socios-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.socios-table th {
+  background-color: #f2f2f2;
+}

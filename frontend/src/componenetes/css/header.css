@@ -1,0 +1,29 @@
+  .header {
+    background:  rgb(110, 227, 239);
+    padding: 20px;
+    display:flex;
+    top: 0px;
+    height: 100px;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+
+  .logo {
+    width: 150px;
+    height: 100px;
+  }
+  .clock {
+    font-weight: bold ;
+    font-size:  18px;
+  }
+    
+
+  .clock {
+  border: 5px solid black;
+  padding:  20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 200px;
+  margin: auto;
+  }

@@ -1,0 +1,19 @@
+  .footer {
+    background: #a0e1f1;
+    color: rgb(60, 19, 182);
+    padding: 20 px;
+    text-align:center;
+    position: fixed;
+    bottom: 10px;
+    top: 700px;
+    width: 100%;
+    display: flex;
+  }
+
+  .navList {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15  px;
+    padding: 0
+    }
