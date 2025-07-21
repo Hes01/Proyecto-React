@@ -14,6 +14,7 @@ VALUES
 
 
 -- 📋 Tabla: EMPLEADO
+--
 CREATE TABLE EMPLEADO (
     IdEmpleado      SERIAL PRIMARY KEY,
     Paterno         VARCHAR(20) NOT NULL,
