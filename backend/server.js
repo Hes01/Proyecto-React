@@ -18,25 +18,28 @@ const pool = new Pool({
     database: process.env.DB_NAME
 });
 
-// === CRUD para ARTICULO ===
-// Obtener todos los artículos
+
+//Aquí estoy botando mi ga
+// === CRUD ARTÍCULO ===
 app.get('/articulo', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM articulo ORDER BY idarticulo');
     res.json(result.rows);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: 'Error al obtener artículos' });
   }
 });
-
-// Agregar un artículo (generación automática de IdArticulo)
 app.post('/articulo', async (req, res) => {
   const { descripcion, idlinea, unidad, stock, preciocosto, precioventa, descuento } = req.body;
 
+  // Validación de idlinea
+  if (!idlinea || idlinea.trim() === '') {
+    return res.status(400).json({ error: "El campo 'idlinea' es obligatorio." });
+  }
+
   try {
     await pool.query('BEGIN');
-
-    // Obtener el contador actual de la línea
     const lineaRes = await pool.query(
       'SELECT contador FROM linea WHERE idlinea = $1 FOR UPDATE',
       [idlinea]
@@ -45,14 +48,11 @@ app.post('/articulo', async (req, res) => {
       throw new Error('Línea no encontrada');
     }
 
-    const contadorActual = lineaRes.rows[0].contador;
-    const nuevoContador = contadorActual + 1;
+    const nuevoContador = lineaRes.rows[0].contador + 1;
     const idarticulo = idlinea + nuevoContador.toString().padStart(5, '0');
 
-    // Actualizar contador
     await pool.query('UPDATE linea SET contador = $1 WHERE idlinea = $2', [nuevoContador, idlinea]);
 
-    // Insertar artículo
     const result = await pool.query(
       `INSERT INTO articulo 
         (idarticulo, descripcion, idlinea, unidad, stock, preciocosto, precioventa, descuento)
@@ -61,8 +61,10 @@ app.post('/articulo', async (req, res) => {
        RETURNING *`,
       [idarticulo, descripcion, idlinea, unidad, stock, preciocosto, precioventa, descuento]
     );
+
     await pool.query('COMMIT');
-    res.json(result.rows[0]);
+    res.status(201).json(result.rows[0]);
+
   } catch (err) {
     await pool.query('ROLLBACK');
     console.error(err);
@@ -70,38 +72,47 @@ app.post('/articulo', async (req, res) => {
   }
 });
 
-// Actualizar artículo
 app.put('/articulo/:idarticulo', async (req, res) => {
   const { idarticulo } = req.params;
   const { descripcion, idlinea, unidad, stock, preciocosto, precioventa, descuento } = req.body;
 
+  //  Validación de idlinea
+  if (!idlinea || idlinea.trim() === '') {
+    return res.status(400).json({ error: "El campo 'idlinea' es obligatorio." });
+  }
+
   try {
     const result = await pool.query(
       `UPDATE articulo SET 
-        descripcion = $1, idlinea = $2, unidad = $3, stock = $4,
-        preciocosto = $5, precioventa = $6, descuento = $7
+         descripcion = $1, idlinea = $2, unidad = $3, stock = $4,
+         preciocosto = $5, precioventa = $6, descuento = $7
        WHERE idarticulo = $8
        RETURNING *`,
       [descripcion, idlinea, unidad, stock, preciocosto, precioventa, descuento, idarticulo]
     );
-
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: 'Artículo no encontrado' });
+    }
     res.json(result.rows[0]);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: 'Error al actualizar artículo' });
   }
 });
 
-// Eliminar artículo
 app.delete('/articulo/:idarticulo', async (req, res) => {
   const { idarticulo } = req.params;
-
   try {
     await pool.query('DELETE FROM articulo WHERE idarticulo = $1', [idarticulo]);
     res.sendStatus(204);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: 'Error al eliminar artículo' });
   }
 });
+
+
+
 
 // === CRUD para SOCIO ===
 // Obtener todos los socios
@@ -160,6 +171,14 @@ app.delete('/socio/:idsocio', async (req, res) => {
   }
 });
 
+
+
+
+
+
+
+
+
 // === CRUD para EMPLEADO ===
 // Obtener todos los empleados
 app.get('/empleado', async (req, res) => {
@@ -201,6 +220,9 @@ app.delete('/empleado/:idempleado', async (req, res) => {
   await pool.query('DELETE FROM empleado WHERE idempleado = $1', [idempleado]);
   res.sendStatus(204);
 });
+
+
+
 
 
 // Reporte: Ventas por Rango de Fechas

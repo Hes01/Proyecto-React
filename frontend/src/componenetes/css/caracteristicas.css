@@ -1,3 +1,35 @@
+
+.features {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+.features h1 {
+  font-size: 2rem;
+  color: #003366;
+  margin-bottom: 20px;
+}
+
+.feature-list {
+  list-style-type: none;
+  padding: 0;
+  max-width: 160px;
+  margin: 0 auto;
+}
+
+.feature-list li {
+  background-color: #f0f0f0;
+  margin: 10px 0;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+/*
   .caracteristicas {
     background: #ebdfe0;
     color: rgb(60, 19, 182);
@@ -13,3 +45,12 @@
     width: 150px;
     height: 100px;
   }
+*/
+
+
+
+
+
+
+
+  

@@ -151,3 +151,43 @@ INSERT INTO DETALLE (Numero, IdArticulo, Cantidad, PrecioVenta, Descuento, SubTo
 --Librería para excel, ejecutar en frontend: npm install xlsx file-saver
 --Librería para pdf, ejecutar en el frontend: npm install jspdf jspdf-autotable
 
+
+
+------------------------------------------------------------------------------------------------
+--------------------------FUNCTION Y TRIGGER
+----------------------------------------------------------------------------------------------
+
+ALTER TABLE EMPLEADO
+ADD COLUMN id_usuario INTEGER REFERENCES usuarios(id) ON DELETE SET NULL;
+
+
+CREATE OR REPLACE FUNCTION actualizar_usuario_desde_empleado()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.id_usuario IS NOT NULL THEN
+        UPDATE usuarios
+        SET 
+            nombre = NEW.Nombres || ' ' || NEW.Paterno || ' ' || NEW.Materno,
+            contraseña = NEW.Clave
+        WHERE id = NEW.id_usuario;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_actualizar_usuario
+AFTER UPDATE ON EMPLEADO
+FOR EACH ROW
+EXECUTE FUNCTION actualizar_usuario_desde_empleado();
+
+
+select*
+from usuarios
+
+select*
+from empleado
+
+UPDATE empleado SET id_usuario = 1 WHERE idempleado = 1;
+UPDATE empleado SET id_usuario = 3 WHERE idempleado = 2;
+UPDATE empleado SET id_usuario = 2 WHERE idempleado = 3;
