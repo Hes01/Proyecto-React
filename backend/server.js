@@ -220,6 +220,9 @@ app.delete('/empleado/:idempleado', async (req, res) => {
 });
 
 
+
+
+
 // Reporte: Ventas por Rango de Fechas
 app.get('/reporte/ventas', async (req, res) => {
   const { desde, hasta } = req.query;
