@@ -18,6 +18,8 @@ const pool = new Pool({
     database: process.env.DB_NAME
 });
 
+
+//Aquí estoy botando mi ga
 // === CRUD ARTÍCULO ===
 app.get('/articulo', async (req, res) => {
   try {
