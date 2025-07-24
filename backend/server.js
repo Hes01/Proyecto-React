@@ -110,6 +110,8 @@ app.delete('/articulo/:idarticulo', async (req, res) => {
 });
 
 
+
+
 // === CRUD para SOCIO ===
 // Obtener todos los socios
 app.get('/socio', async (req, res) => {
@@ -166,6 +168,12 @@ app.delete('/socio/:idsocio', async (req, res) => {
     res.status(500).json({ error: 'Error al eliminar socio' });
   }
 });
+
+
+
+
+
+
 
 
 
