@@ -183,7 +183,12 @@ EXECUTE FUNCTION actualizar_usuario_desde_empleado();
 
 
 select*
-from usuarios
+from usuarios;
+
+UPDATE public.empleado SET paterno='RAMIREZ', materno='CASTRO', nombres='LAURA INES', direccion='Av. Piura 456', telefono='965874123', clave='clave456', id_usuario=1 WHERE idempleado=2;
+
+DELETE FROM public.empleado WHERE idempleado=3;
+
 
 select*
 from empleado
